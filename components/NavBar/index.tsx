@@ -1,6 +1,8 @@
 "use client"
 import Link from "next/link";
-import React, {useState} from "react";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
+import React, {useEffect, useState} from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 
@@ -11,23 +13,49 @@ interface IMenu {
 
 const menu:IMenu[] = [
   { name: "Inicio", url: "/" },
-  { name: "Sobre", url: "/" },
-  { name: "Personagens", url: "/" },
-  { name: "Clans", url: "/" },
-  { name: "Bijus", url: "/" },
-  { name: "Kekkeigenkai", url: "/" },
-  { name: "Kara", url: "/" },
-  { name: "Team", url: "/" },
-  { name: "Village", url: "/" },
-  { name: "Bijus", url: "/" },
-  { name: "Contato", url: "/" },
+  { name: "Sobre", url: "/sobre" },
+  { name: "Personagens", url: "/personagens" },
+  { name: "Clans", url: "/clans" },
+  { name: "Bijus", url: "/bijus" },
+  { name: "Kekkeigenkai", url: "/kekkeigenkai" },
+  { name: "Kara", url: "/kara" },
+  { name: "Times", url: "/times" },
+  { name: "Vilas", url: "/village" },
+  { name: "Bijus", url: "/bijus" },
+  { name: "Contato", url: "/contato" },
 ];
+
+const colors: string[] = [
+  '#FF9434', 
+  '#EB3434', 
+  '#2B78ED', 
+  '#4A21A3', 
+  '#0A66A6', 
+  '#282929', 
+  '#07016E', 
+  '#8C1B87', 
+  '#4A021F', 
+  '#C4B804', 
+  '#5404C4'
+] 
 
 const Header:React.FC =() => {
   const [navbar, setNavbar] = useState<Boolean>(false);
+  const [color, setColor] = useState<string>('');
+  const route = usePathname();
+
+  useEffect(() => {
+    menu.forEach((item, index) => {
+      if(item.url === route){
+        setColor(colors[index])
+      }
+    })
+  }, [route, color])
+
+  console.log(color)
 
   return (
-    <nav className="fixed w-full bg-[#FF9434] shadow z-50">
+    <nav className={`fixed w-full shadow z-50`} style={{backgroundColor: color}}>
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center lg:flex md:px-8">
         <div>
           <div className="flex items-center justify-between lg:block">

@@ -3,14 +3,14 @@
   --swiper-pagination-color: #fff,
 }
 
-.swiper {
+.swiper-header {
   width: 100%;
   height: 100vh;
   background: #000;
   background-color: #FF9434;
 }
 
-.swiper-slide {
+.swiper-slide-header {
   display: flex;
   flex-direction: column;
   justify-content: center;

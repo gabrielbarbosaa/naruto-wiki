@@ -3,23 +3,24 @@ import SlideHome from "@/components/SlideHome";
 import { useAllCharacters } from "@/core/services/CharactersService";
 import Image from "next/image";
 
+import sasukeUchiha from '@/assets/images/sasuke-uchiha-home.png'
+import EffectCards from "@/components/EffectCards";
+
 const Home:React.FC = () => {
-  const { data, error, isLoading } = useAllCharacters('1', 10)
+  const { data, error, isLoading } = useAllCharacters('3', 10)
   return (
     <main>
       <SlideHome />
-      <div className="h-full bg-slate-700">
-        {data?.characters?.map((item, index) => (
-          <div key={index}>
-            <p className="text-white">{item?.name}</p>
-            <Image 
-              src={item?.images[0]}
-              alt={item?.name + 'img'}
-              width={800}
-              height={800}
-            />
-          </div>
-        ))}
+      <div className="h-screen flex justify-between items-center mx-40 my-14">
+        <div>
+          <EffectCards characters={data?.characters!}/>
+        </div>
+        <Image 
+          src={sasukeUchiha}
+          alt={'sasuke-uchiha'}
+          width={300}
+          height={300}
+        />
       </div>
     </main>
   )
