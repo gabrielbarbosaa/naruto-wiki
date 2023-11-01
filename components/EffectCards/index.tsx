@@ -22,7 +22,7 @@ const EffectCards = ({characters}:IProps) => {
       className="swiper-effect"
     >
       {characters?.map((item, index) => (
-        <SwiperSlide className='swiper-slide-effect'>
+        <SwiperSlide className='swiper-slide-effect' key={index}>
           <div className='h-full w-full bg-no-repeat bg-contain' style={{backgroundImage: `url('${item?.images[0]}')`}}>
             <div>
               <p>{item.name}</p>
